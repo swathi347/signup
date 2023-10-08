@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d6fffd;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgb(134, 255, 235);
+            padding: 55px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #000000b2;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #01254b;
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign-up Form</h2>
+        <form id="signupForm">
+            <label for="email">User Email:</label>
+            <input type="text" id="email" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Invalid email address. Please enter a valid email.');
+                return;
+            }
+
+            // Password validation
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+            if (!passwordRegex.test(password)) {
+                alert('Invalid password. Please make sure your password meets the following criteria:\n\n' +
+                      '- At least 8 characters\n' +
+                      '- At least one uppercase letter\n' +
+                      '- At least one special character (!@#$%^&*)\n' +
+                      '- At least one number');
+                return;
+            }
+
+            alert('Sign-up successful!');
+        });
+    </script>
+</body>
+</html>
